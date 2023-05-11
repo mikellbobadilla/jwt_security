@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.mikellbobadilla</groupId>
 	<artifactId>jwt_security</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>jwt_security</name>
 	<description>Using JsonWebToken</description>
 	<properties>

@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 
 import java.util.Date;
 
-public record NotFoundUrlDTO(
-  HttpStatus httpStatus,
+public record ErrorResponseDTO(
+  HttpStatus status,
   String message,
-  Date timestamp,
-  String url) {
+  Date timestamp
+) {
 }

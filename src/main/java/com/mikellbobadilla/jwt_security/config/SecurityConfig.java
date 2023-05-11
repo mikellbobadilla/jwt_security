@@ -35,13 +35,12 @@ public class SecurityConfig {
       .anyRequest()
       .authenticated()
       .and()
-      /* Auth provider was implemented on AppConfig class */
-      .authenticationProvider(authProvider)
       .sessionManagement()
       .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
       .and()
-      .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
-    ;
+      /* Auth provider was implemented on AppConfig class */
+      .authenticationProvider(authProvider)
+      .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
     return http.build();
   }
