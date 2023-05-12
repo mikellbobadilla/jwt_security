@@ -4,7 +4,9 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
@@ -15,11 +17,15 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class JwtService {
 
-  @Value("${jwt.secret}")
-  private String jwtSecret;
+//  @Value("${jwt.secret}")
+//  private String jwtSecret;
+
+  @Autowired
+  private Environment env;
 
   private Key getSignInKey(){
-    byte[] keyBytes = Decoders.BASE64.decode(jwtSecret);
+//    byte[] keyBytes = Decoders.BASE64.decode(jwtSecret);
+    byte[] keyBytes = Decoders.BASE64.decode(env.getProperty("JWT_SECRET"));
     return Keys.hmacShaKeyFor(keyBytes);
   }
 
