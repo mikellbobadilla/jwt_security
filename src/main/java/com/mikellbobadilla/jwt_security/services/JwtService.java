@@ -16,15 +16,10 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class JwtService {
-
-//  @Value("${jwt.secret}")
-//  private String jwtSecret;
-
   @Autowired
   private Environment env;
 
   private Key getSignInKey(){
-//    byte[] keyBytes = Decoders.BASE64.decode(jwtSecret);
     byte[] keyBytes = Decoders.BASE64.decode(env.getProperty("JWT_SECRET"));
     return Keys.hmacShaKeyFor(keyBytes);
   }
