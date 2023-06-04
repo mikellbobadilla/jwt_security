@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.logging.Logger;
 
 @RestController
+@RequestMapping("/api")
 public class IndexController {
 
-  @GetMapping("/")
+  @GetMapping("/index")
   public ResponseEntity<IndexDTO> notFoundUrl(){
     return new ResponseEntity<>(new IndexDTO("Principal Page"), HttpStatus.OK);
   }

@@ -15,6 +15,4 @@ Luego de Generar la imagen, solo queda usar el docker-compose:
 docker-compose up
 ```
 
-El servidor por defecto se queda escuchando en el puerto 8080, pero podes elejir el numero de puerto que quieras.
-Solo tienes que pasarle en el docker-compose una variable de entorno **APP_PORT** antes de iniciar la aplicación.
-
+Para entender el como está construido este proyecto, podes analizarlo ó podes mirar este [video](http://www.youtube.com)

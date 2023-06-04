@@ -1,5 +1,6 @@
 package com.mikellbobadilla.jwt_security.exception;
 
+import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.mikellbobadilla.jwt_security.DTO.ErrorResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,21 @@ public class MapExceptionHandler {
     return new ResponseEntity<>(response, status);
   }
 
+  @ExceptionHandler(RuntimeException.class)
+  public ResponseEntity<ErrorResponseDTO> defaultException(RuntimeException exc){
+    var status = HttpStatus.INTERNAL_SERVER_ERROR;
+    var response = getResponseException(status, "Internal Server Error");
+    log.severe("""
+      {
+        Log: Server response %s,
+        MessageException: %s
+        Cause: %s,
+      }
+      """.formatted(status.value(), exc.getMessage(), exc.getClass().getName())
+    );
+    return new ResponseEntity<>(response, status);
+  }
+
   @ExceptionHandler(AuthenticationException.class)
   public ResponseEntity<ErrorResponseDTO> authException(AuthenticationException exc){
     String message;
@@ -39,6 +55,21 @@ public class MapExceptionHandler {
     if(exc instanceof UsernameNotFoundException){
       message = "Bad Credentials!";
     }
+    log.warning("""
+      {
+        Log: Server response %s,
+        MessageException: %s
+        Cause: %s,
+      }
+      """.formatted(status.value(), exc.getMessage(), exc.getClass().getName())
+    );
+    return new ResponseEntity<>(getResponseException(status, message), status);
+  }
+
+  @ExceptionHandler(JWTVerificationException.class)
+  public ResponseEntity<ErrorResponseDTO> jwtException(JWTVerificationException exc){
+    String message = "Your session has expired!";
+    var status = HttpStatus.FORBIDDEN;
     log.warning("""
       {
         Log: Server response %s,
