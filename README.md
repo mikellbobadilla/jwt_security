@@ -15,4 +15,4 @@ Luego de Generar la imagen, solo queda usar el docker-compose:
 docker-compose up
 ```
 
-Para entender el como está construido este proyecto, podes analizarlo ó podes mirar este [video](http://www.youtube.com)
+Para entender el cómo está construido este proyecto, puedes analizarlo o puedes mirar este [video](#)
