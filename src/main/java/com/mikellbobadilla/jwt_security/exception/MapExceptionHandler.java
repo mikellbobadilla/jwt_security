@@ -1,6 +1,7 @@
 package com.mikellbobadilla.jwt_security.exception;
 
 import com.auth0.jwt.exceptions.JWTVerificationException;
+import com.auth0.jwt.exceptions.TokenExpiredException;
 import com.mikellbobadilla.jwt_security.DTO.ErrorResponseDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -67,7 +68,7 @@ public class MapExceptionHandler {
   }
 
   @ExceptionHandler(JWTVerificationException.class)
-  public ResponseEntity<ErrorResponseDTO> jwtException(JWTVerificationException exc){
+  public ResponseEntity<ErrorResponseDTO> jwtException(TokenExpiredException exc){
     String message = "Your session has expired!";
     var status = HttpStatus.FORBIDDEN;
     log.warning("""
