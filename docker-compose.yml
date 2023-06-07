@@ -14,7 +14,7 @@ services:
       - 'mysql_db:/var/lib/mysql'
 
   jwt_app:
-    image: stingnakamura/jwt_app:1.0.0
+    image: stingnakamura/jwt_app:1.0.2
     container_name: jwt_app
     command: 'java -jar /app/target/jwt_security-1.0.0.jar'
     environment:
